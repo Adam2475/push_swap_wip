@@ -6,7 +6,7 @@
 #    By: adpassar <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/13 18:54:57 by adpassar          #+#    #+#              #
-#    Updated: 2023/04/17 18:49:49 by adpassar         ###   ########.fr        #
+#    Updated: 2023/04/27 16:08:09 by adpassar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
-LIBFT = libft/libft.adpassar
+LIBFT = libft/
 
 SRC = src/push_swap.c
 

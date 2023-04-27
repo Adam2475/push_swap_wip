@@ -6,14 +6,40 @@
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:38:15 by adpassar          #+#    #+#             */
-/*   Updated: 2023/04/19 21:28:51 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:50:06 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
-//this function checks if no one of the arguments exeeds
-//the viable size of an int
+
+// checks if the stack is already sorted
+int check_sorting(t_stack **stack_a)
+{
+    t_stack *copy;
+    t_stack *head;
+
+    copy = ft_copy_list(*stack_a);
+    head = copy;
+    while (copy)
+    {
+        if (copy->next == NULL)
+            break ;// why not return?
+        // check if values are all ordered
+        if (copy->value < copy->next->value)
+            copy = copy->next;
+        else
+        {
+            free_list(&head);
+            return (0);
+        }
+    }
+    free_list(&head);
+    return (1);
+}
+
+// this function checks if no one of the arguments exeeds
+// the viable size of an int
 int check_limits(char **av, int x)
 {
     long int    num;
@@ -29,8 +55,8 @@ int check_limits(char **av, int x)
     return(1);
 }
 
-//this function cycles through the argumets vector and
-//checks if all the caracters are eligible integers
+// this function cycles through the argumets vector and
+// checks if all the caracters are eligible integers
 int check_args(char **av)
 {
     int x;
@@ -58,12 +84,64 @@ int check_args(char **av)
     return(0);
 }
 
+// should check for duplicates
+/* i declare this fuction in the main with the just assigned stack_a
+    and i cycle thought it with the counter index*/
 
-//what the fuck it does?
-//should check for duplicates
+// int check_list(t_stack *stack)
+// {
+//     int counter;
+//     t_stack *copy;
+//     // nani ?!
+//     t_stack *chead;
+
+//     // copy list??
+//     copy = ft_copy_list(stack);
+//     chead = copy;
+//     while (stack)
+//     {
+//         copy = chead;
+//         counter = 0;
+//         while (copy)
+//         {
+//             if (copy->value == stack->value)
+//                 counter++;
+//             if (counter > 1)
+//             {
+//                 free_list(&chead);
+//                 return (1);
+//             }
+//             copy = copy->next;
+//         }
+//         stack = stack->next;
+//     }
+//     free_list(&chead);
+//     return (0);
+// }
+
 int check_list(t_stack *stack)
 {
-    int counter;
-    t_stack *copy;
-    t_stack *chead;
+    int duplicate;
+    t_stack *tmp;
+    t_stack *head;
+
+    tmp = stack->next;
+    head = stack;
+    while (tmp)
+    {
+        duplicate = 0;
+        stack = head;
+        while (stack)
+        {
+            if(stack->value == tmp->value)
+                duplicate++;
+            if (duplicate > 1)
+            {
+                return(1);
+            }
+            stack = stack->next;
+        }
+        tmp = tmp->next;
+    }
+    return(0);
 }

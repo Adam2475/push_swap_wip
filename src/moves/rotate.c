@@ -6,7 +6,7 @@
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/20 17:06:43 by adpassar          #+#    #+#             */
-/*   Updated: 2023/04/26 14:41:25 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:29:40 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 void rra(t_stack **stack_a)
 {
-    t_stack **head;
-    t_stack **last;
+    t_stack *head;
+    t_stack *last;
+    
     if(*stack_a && (*stack_a)->next != NULL)
     {
         head = (*stack_a);
