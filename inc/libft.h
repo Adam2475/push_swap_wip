@@ -6,7 +6,7 @@
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:44:13 by adpassar          #+#    #+#             */
-/*   Updated: 2023/04/19 21:01:01 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/05/06 11:51:34 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void 	ft_putchar(char c);
 //////////////////////////////////////////////////////////////////////////
 t_stack *ft_lstnewnum(int num);
 void    ft_lstadd_backnum(t_stack **lst, t_stack *new);
+t_stack	*ft_lstlastnum(t_stack *lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 18:54:48 by adpassar          #+#    #+#             */
-/*   Updated: 2023/04/19 20:29:35 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/05/06 13:17:35 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct	s_stack
 {
 	int				value;
 	// int				index;
-	int				pos;
+	// int				pos;
 	// int				target_pos;
 	// int				cost_a;
 	// int				cost_b;
@@ -37,6 +37,7 @@ typedef struct	s_stack
 
 int	check_limits(char **av, int x);
 int	check_args(char **av);
+int check_sorting(t_stack **stack_a);
 
 /* Operations */
 

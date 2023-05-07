@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execute_sorting_three.c                            :+:      :+:    :+:   */
+/*   execute_sorting_five.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 16:11:57 by adpassar          #+#    #+#             */
-/*   Updated: 2023/05/07 09:43:53 by adpassar         ###   ########.fr       */
+/*   Created: 2023/05/06 12:42:59 by adpassar          #+#    #+#             */
+/*   Updated: 2023/05/06 13:18:00 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/push_swap.h"
 
-void    ft_sort_three(t_stack **stack_a, t_stack **stack_b)
+void    ft_sort_five(t_stack **stack_a, t_stack **stack_b)
 {
     t_stack *head_a;
     t_stack *last_a;
