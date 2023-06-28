@@ -6,12 +6,24 @@
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:38:15 by adpassar          #+#    #+#             */
-/*   Updated: 2023/04/27 17:50:06 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:08:04 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+#include "../libftprintf/inc/libft.h"
 
+static void ft_putchar(char c)
+{
+    write(1, &c, 1);
+}
+
+static void ft_putstr(const char *str) {
+    while (*str != '\0') {
+        ft_putchar(*str);
+        str++;
+    }
+}
 
 // checks if the stack is already sorted
 int check_sorting(t_stack **stack_a)
@@ -30,17 +42,17 @@ int check_sorting(t_stack **stack_a)
             copy = copy->next;
         else
         {
-            free_list(&head);
+            ft_free_list(&head);
             return (0);
         }
     }
-    free_list(&head);
+    ft_free_list(&head);
     return (1);
 }
 
 // this function checks if no one of the arguments exeeds
 // the viable size of an int
-int check_limits(char **av, int x)
+int check_lim(char **av, int x)
 {
     long int    num;
     
@@ -66,7 +78,7 @@ int check_args(char **av)
     while(av[++x])
     {
         y = 0;
-        if (check_limits(av,x) == 1)
+        if (check_lim(av,x) == 1)
             return (1);
         if (av[x][0] == '-' && av[x][1] != '\0')
             y++;

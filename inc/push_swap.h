@@ -6,12 +6,14 @@
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 18:54:48 by adpassar          #+#    #+#             */
-/*   Updated: 2023/05/06 13:17:35 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/06/22 19:45:37 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# include "../libftprintf/inc/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -19,38 +21,34 @@
 # include <ctype.h>
 # include <stdbool.h>
 # include <limits.h>
-# include "../libft/libft.h"
-
-typedef struct	s_stack
-{
-	int				value;
-	// int				index;
-	// int				pos;
-	// int				target_pos;
-	// int				cost_a;
-	// int				cost_b;
-	struct s_stack	*next;
-}	t_stack;
-
 
 /* Controls */
 
-int	check_limits(char **av, int x);
-int	check_args(char **av);
-int check_sorting(t_stack **stack_a);
+int	    check_lim(char **av, int x);
+int	    check_args(char **av);
+int     check_sorting(t_stack **stack_a);
+void	simple_sort(t_stack **stack_a, t_stack **stack_b);
+void	sort_5(t_stack **stack_a, t_stack **stack_b);
+void	sort_4(t_stack **stack_a, t_stack **stack_b);
+void	sort_3(t_stack **stack_a);
+int	    get_min(t_stack **stack);
+void	radix_sort(t_stack **stack_a, t_stack **stack_b);
+int	    get_max_bits(t_stack **stack);
+int     check_list(t_stack *stack);
+
 
 /* Operations */
 
-void		do_pa(t_stack **stack_a, t_stack **stack_b);
-void		do_pb(t_stack **stack_a, t_stack **stack_b);
-void		do_sa(t_stack **stack_a);
-void		do_sb(t_stack **stack_b);
-void		do_ss(t_stack **stack_a, t_stack **stack_b);
-void		do_ra(t_stack **stack_a);
-void		do_rb(t_stack **stack_b);
-void		do_rr(t_stack **stack_a, t_stack **stack_b);
-void		do_rrr(t_stack **stack_a, t_stack **stack_b);
-void		do_rra(t_stack **stack_a);
-void		do_rrb(t_stack **stack_b);
+void		pa(t_stack **stack_a, t_stack **stack_b);
+void		pb(t_stack **stack_a, t_stack **stack_b);
+void		sa(t_stack **stack_a);
+void		sb(t_stack **stack_b);
+void		ss(t_stack **stack_a, t_stack **stack_b);
+void		ra(t_stack **stack_a);
+void		rb(t_stack **stack_b);
+void		rr(t_stack **stack_a, t_stack **stack_b);
+void		rrr(t_stack **stack_a, t_stack **stack_b);
+void		rra(t_stack **stack_a);
+void		rrb(t_stack **stack_b);
 
 #endif
