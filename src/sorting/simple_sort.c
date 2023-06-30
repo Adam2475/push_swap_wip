@@ -6,7 +6,7 @@
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 15:19:23 by adpassar          #+#    #+#             */
-/*   Updated: 2023/06/28 19:20:49 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/06/30 16:54:30 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,41 @@ void	sort_3(t_stack **stack_a)
 }
 
 void	sort_4(t_stack **stack_a, t_stack **stack_b)
-{
-	
-	if ((*stack_a)->value > (*stack_a)->next->value)
+{	
+	t_stack *head;
+	//t_stack *tail;
+	int max;
+	int min;
+	min = get_min(stack_a);
+	max = get_max(stack_a);
+
+	pb(stack_a, stack_b);
+	sort_3(stack_a);
+	pa(stack_a, stack_b);
+
+	head = (*stack_a);
+	//tail = ft_lstlast(*stack_a);
+
+	while(check_sorting(stack_a) != 1)
 	{
-		pa(stack_a, stack_b);
-	}
-	else
-	{
-		ra(stack_a);
+		if(head->value == min)
+			break;
+		else if(head->value == max)
+		{
+			ra(stack_a);
+			break;
+		}
+		else if (head->value > (*stack_a)->next->value && head->value < (*stack_a)->next->next->value)
+		{
+			sa(stack_a);
+		}
+		else if (head->value > (*stack_a)->next->value && head->value > (*stack_a)->next->next->value)
+		{
+			sa(stack_a);
+			pb(stack_a, stack_b);
+			sa(stack_a);
+			pa(stack_a, stack_b);
+		}
 	}
 }
 
@@ -100,12 +126,6 @@ void	sort_5(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack *head;
 	t_stack *tail;
-	// t_stack *tmp;
-
-	// tmp = (*stack_a);
-	// tail = ft_lstlast(*stack_a);
-
-	// int min;
 	int max;
 	int min;
 	min = get_min(stack_a);
@@ -144,6 +164,16 @@ void	sort_5(t_stack **stack_a, t_stack **stack_b)
 			}
 			if (head->value == min && tail->value == max)
 			{
+				if ((*stack_a)->next->value > (*stack_a)->next->next->value && (*stack_a)->next->value > (*stack_a)->next->next->next->value)
+				{
+					pb(stack_a, stack_b);
+					rra(stack_a);
+					sa(stack_a);
+					ra(stack_a);
+					ra(stack_a);
+					pa(stack_a, stack_b);
+					break;
+				}
 				pb(stack_a, stack_b);
 				sa(stack_a);
 				pa(stack_a, stack_b);
@@ -171,8 +201,27 @@ void	sort_5(t_stack **stack_a, t_stack **stack_b)
 		}
 		else if (head->value > (*stack_a)->next->value && (*stack_a)->next->value < tail->value && head->value < tail->value)
 		{
-			if ((*stack_a)->next->next->value == min)
+			if ((*stack_a)->next->next->value == min && head->value < (*stack_a)->next->next->next->value && ((*stack_a)->next->value < (*stack_a)->next->next->next->value))
 			{
+				sa(stack_a);
+				pb(stack_a,stack_b);
+				sa(stack_a);
+				pa(stack_a,stack_b);
+				sa(stack_a);
+				break;
+			}
+			else if ((*stack_a)->next->next->value == min)
+			{
+			if (tail->value == max && (*stack_a)->next->value < (*stack_a)->next->next->next->value)
+			{
+				pb(stack_a, stack_b);
+				sa(stack_a);
+				rra(stack_a);
+				pa(stack_a, stack_b);
+				ra(stack_a);
+				ra(stack_a);
+				break;
+			}
 				rra(stack_a);
 				pb(stack_a,stack_b);
 				sa(stack_a);
@@ -182,8 +231,21 @@ void	sort_5(t_stack **stack_a, t_stack **stack_b)
 				ra(stack_a);
 				break;
 			}
+			else if ((*stack_a)->next->next->value < head->value && (*stack_a)->next->value == min)
+			{
+				sa(stack_a);
+				pb(stack_a, stack_b);
+				sa(stack_a);
+				pa(stack_a, stack_b);
+				break;
+			}
 			else if ((*stack_a)->next->value == min)
 			{
+				if (head->value < (*stack_a)->next->next->value)
+				{
+					sa(stack_a);
+					break;
+				}
 				rra(stack_a);
 				sa(stack_a);
 				ra(stack_a);
@@ -266,6 +328,13 @@ void	sort_5(t_stack **stack_a, t_stack **stack_b)
 			}
 			if ((*stack_a)->next->value > (*stack_a)->next->next->next->value)
 			{
+				if ((*stack_a)->next->value == max && head->value < (*stack_a)->next->next->next->value)
+				{
+					sa(stack_a);
+					ra(stack_a);
+					sa(stack_a);
+					break;
+				}
 				pb(stack_a, stack_b);
 				sa(stack_a);
 				pb(stack_a, stack_b);
