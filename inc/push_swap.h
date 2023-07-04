@@ -6,7 +6,7 @@
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 18:54:48 by adpassar          #+#    #+#             */
-/*   Updated: 2023/06/22 19:45:37 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/07/04 12:24:59 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	    get_min(t_stack **stack);
 void	radix_sort(t_stack **stack_a, t_stack **stack_b);
 int	    get_max_bits(t_stack **stack);
 int     check_list(t_stack *stack);
-
+long int     get_max(t_stack **stack);
 
 /* Operations */
 

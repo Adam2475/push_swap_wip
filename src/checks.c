@@ -6,21 +6,33 @@
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:38:15 by adpassar          #+#    #+#             */
-/*   Updated: 2023/06/22 17:08:04 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:07:51 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 #include "../libftprintf/inc/libft.h"
 
-static void ft_putchar(char c)
+// static void ft_putchar(char c)
+// {
+//     write(1, &c, 1);
+// }
+
+// static void ft_putstr(const char *str) {
+//     while (*str != '\0') {
+//         ft_putchar(*str);
+//         str++;
+//     }
+// }
+
+static void ft_puterr(char c)
 {
-    write(1, &c, 1);
+    write(2,&c,1);
 }
 
-static void ft_putstr(const char *str) {
+static void ft_errstr(const char *str) {
     while (*str != '\0') {
-        ft_putchar(*str);
+        ft_puterr(*str);
         str++;
     }
 }
@@ -36,8 +48,7 @@ int check_sorting(t_stack **stack_a)
     while (copy)
     {
         if (copy->next == NULL)
-            break ;// why not return?
-        // check if values are all ordered
+            break ;
         if (copy->value < copy->next->value)
             copy = copy->next;
         else
@@ -50,34 +61,44 @@ int check_sorting(t_stack **stack_a)
     return (1);
 }
 
-// this function checks if no one of the arguments exeeds
-// the viable size of an int
+// checks if the arguments exeeds the int value
 int check_lim(char **av, int x)
 {
     long int    num;
     
+    //printf("%s\n", av[x]);
+    //num = ft_atoi(av[x]);
     num = ft_atoi_long(av[x]);
-    if (num >= INT_MIN && num <= INT_MAX)
-        return (0);
+    //num = atol(av[x]);
+    //printf("%ld\n", num);
+    if (num < INT_MIN || num > INT_MAX)
+    {
+        ft_errstr("Error\n");
+    }
     else
     {
-        ft_putstr("Error\n");
-        ft_putstr("Some arguments are not of an eligible int size");
+        return (0);
     }
     return(1);
 }
 
-// this function cycles through the argumets vector and
 // checks if all the caracters are eligible integers
 int check_args(char **av)
 {
     int x;
     int y;
+    int limit;
+    limit = 0;
 
     x = 0;
     while(av[++x])
     {
         y = 0;
+        //printf("%s\n", av[x]);
+        //printf("%s", av);
+        // limit = check_lim(av, x);
+        // if (limit == 1)
+        //     return(1);
         if (check_lim(av,x) == 1)
             return (1);
         if (av[x][0] == '-' && av[x][1] != '\0')
@@ -88,48 +109,13 @@ int check_args(char **av)
                 y++;
             else
             {
-                ft_putstr("Error!");
-                ft_putstr("Some argument's aren't integers");
+                ft_errstr("Error\n");
+                return (1);
             }
         }
     }
     return(0);
 }
-
-// should check for duplicates
-/* i declare this fuction in the main with the just assigned stack_a
-    and i cycle thought it with the counter index*/
-
-// int check_list(t_stack *stack)
-// {
-//     int counter;
-//     t_stack *copy;
-//     // nani ?!
-//     t_stack *chead;
-
-//     // copy list??
-//     copy = ft_copy_list(stack);
-//     chead = copy;
-//     while (stack)
-//     {
-//         copy = chead;
-//         counter = 0;
-//         while (copy)
-//         {
-//             if (copy->value == stack->value)
-//                 counter++;
-//             if (counter > 1)
-//             {
-//                 free_list(&chead);
-//                 return (1);
-//             }
-//             copy = copy->next;
-//         }
-//         stack = stack->next;
-//     }
-//     free_list(&chead);
-//     return (0);
-// }
 
 int check_list(t_stack *stack)
 {

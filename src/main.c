@@ -1,37 +1,70 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adpassar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/13 18:54:52 by adpassar          #+#    #+#             */
-/*   Updated: 2023/06/16 21:06:18 by adpassar         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:37:09 by adpassar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 #include "../libftprintf/inc/libft.h"
 
-static void ft_putchar(char c)
+// static void ft_putchar(char c)
+// {
+//     write(1,&c,1);
+// }
+
+// static void ft_putstr(const char *str) {
+//     while (*str != '\0') {
+//         ft_putchar(*str);
+//         str++;
+//     }
+// }
+
+static void ft_puterr(char c)
 {
-    write(1,&c,1);
+    write(2,&c,1);
 }
 
-static void ft_putstr(const char *str) {
+static void ft_errstr(const char *str) {
     while (*str != '\0') {
-        ft_putchar(*str);
+        ft_puterr(*str);
         str++;
     }
 }
 
-void    start_sorting(t_stack **stack_a, t_stack **stack_b)
+void	simple_sort(t_stack **stack_a, t_stack **stack_b)
 {
-    if(ft_lstsize(*stack_a) <= 5)
-        simple_sort(stack_a, stack_b);
+	int	size;
+    size = ft_lstsize(*stack_a);
+
+	if (check_sorting(stack_a) == 1)
+		return ;
+	if (ft_lstsize(*stack_a) == 0 || ft_lstsize(*stack_a) == 1)
+		return ;
+	if (size == 2)
+		sa(stack_a);
+	else if (size == 3)
+		sort_3(stack_a);
+	else if (size == 4)
+		sort_4(stack_a, stack_b);
+	else if (size == 5)
+		sort_5(stack_a, stack_b);
     else
         radix_sort(stack_a, stack_b);
 }
+
+// void    start_sorting(t_stack **stack_a, t_stack **stack_b)
+// {
+//     if(ft_lstsize(*stack_a) <= 5)
+//         simple_sort(stack_a, stack_b);
+//     else
+//         radix_sort(stack_a, stack_b);
+// }
 
 int main(int ac, char **av)
 {
@@ -62,20 +95,23 @@ int main(int ac, char **av)
         // check duplicates? probably inefficient...
         if (check_list(stack_a) == 1)
         {
-            ft_putstr("there are some duplicate arguments!");
+            ft_errstr("Error\n");
             // need to control the ft_free
             ft_free_list(&stack_a);
             return (1);
         }
         /* i execute the function that consist in a list of
             conditions depending on the numbers of arguments */
-        start_sorting(&stack_a, &stack_b /*ac -1*/);
+        //printf("%d",check_sorting(&stack_a));
+        simple_sort(&stack_a, &stack_b);
         // free the stacks and take home
         ft_free_list(&stack_a);
         ft_free_list(&stack_b);
     }
-   
     // else means there is only 1 argument or there are invalid args
     else
-        return (0);
+    {
+        //printf("fuck you");
+        return (1);
+    }
 }
